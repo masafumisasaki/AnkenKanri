@@ -4,6 +4,7 @@ requires 'REST::Client';
 requires 'URI::Escape';
 requires 'JSON';
 requires 'Encode';
+requires 'Moo';
 
 # requires 'Some::Module', 'VERSION';
 
