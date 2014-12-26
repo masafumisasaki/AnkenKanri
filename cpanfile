@@ -5,6 +5,7 @@ requires 'URI::Escape';
 requires 'JSON';
 requires 'Encode';
 requires 'Moo';
+requires 'Path::Class';
 
 # requires 'Some::Module', 'VERSION';
 

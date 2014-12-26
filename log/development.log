@@ -408,3 +408,4 @@ Compilation failed in require at (eval 270) line 1.
 [Fri Dec 26 17:12:10 2014] [debug] Routing to controller "AnkenKanri::WEB::Member::Root" and action "index".
 [Fri Dec 26 17:12:10 2014] [debug] Rendering cached template "member/root/index.html.ep".
 [Fri Dec 26 17:12:10 2014] [debug] 200 OK (0.011280s, 88.652/s).
+[Fri Dec 26 19:13:21 2014] [info] Listening at "http://*:3000".
