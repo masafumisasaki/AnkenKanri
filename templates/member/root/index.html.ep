@@ -2,8 +2,10 @@
 
 <html>
 <head>
-	<title><%= title %></title>
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
+<title><%= title %></title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"</script>
+<script type="text/javascript" src="/js/bootstrap.min.js"</script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,19 +36,6 @@
 			<br>
 			<br>
 			<p> 毎週作成している週報をkintoneの案件ログから生成するアプリです。</p>
-			<div class="row">
-				<div class="col-lg-4">
-					<p>
-					<a class="btn btn-primary btn-large btn-block" href="//getbootstrap.com/"><span class="glyphicon glyphicon-hand-right"></span>　週報の表示 </a>
-					</p>
-				</div>
-				<div class="col-lg-4">
-					<p>
-					<a class="btn btn-danger btn-large btn-block" href="//github.com/twbs/bootstrap/archive/v3.3.1.zip"><span class="glyphicon glyphicon-download-alt"></span>　週報のダウンロード</a>
-					</p>
-				</div>
-				<div class="col-lg-1"> </div>
-			</div>
 		</div>
 	</div>
 </div>
@@ -70,6 +59,49 @@
 			</div>
 		</div>
 	</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<p>
+					<a id="id1" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-hand-right"></span>　週報の表示 </a>
+					</p>
+				</div>
+				<div class="col-lg-4">
+					<p>
+					<a class="btn btn-danger btn-large btn-block" href="//github.com/twbs/bootstrap/archive/v3.3.1.zip"><span class="glyphicon glyphicon-download-alt"></span>　週報のダウンロード</a>
+					</p>
+				</div>
+				<div class="col-lg-1"> </div>
+			</div>
+<div style='clear:both;border: 2px dotted #080; padding:10px;'>
+	<p>
+	担当者: <input type='text' id='text1' value='Hello'><br>
+	Param2: <input type='text' id='text2' value='World'><br>
+	<div id='div3' style='border:1px solid #00f;padding:10px;'></div>
+	<script type="text/javascript">
+$('#id1').click(function(){
+$.ajax({
+url: "http://localhost:3000/kintone",
+type: "POST",
+cache: false,
+dataType: "json",
+data: {
+param1: $('#text1').val(),
+param2: $('#text2').val()
+},
+success: function(o){
+	var cnt = Object.keys(o.records[0].活動履歴.value).length;
+	$('#div3').html( o.records[0].お客様企業名.value + " - " + 
+		o.records[0].活動履歴.value[cnt-1].value.活動日.value + "-" + 
+		o.records[0].活動履歴.value[cnt-1].value.文字列__複数行__4.value 
+		);
+},
+error: function(xhr, textStatus, errorThrown){
+	alert('エラーが起きてるよ。管理者に連絡してね!!');
+}
+});
+});
+	</script>
+</div>
 </div>
 </body>
 </html>

@@ -6,3 +6,4 @@ MYMETA.*
 /.prove
 /local
 nohup.out
+*.swp
