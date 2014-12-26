@@ -31,9 +31,6 @@ has fields => (
 sub get_json {
 
 	my $self = shift;
-	my $query_param = $self->query;
-	my $fields = $self->fields;
-	my $app_id = $self->application_id;
 
 	my $host = q{https://mkt.cybozu.com};
 	my $client = REST::Client->new(host => $host);
@@ -41,17 +38,17 @@ sub get_json {
 	$client->getUseragent()->proxy(['https'], $self->proxy_server);
 
 
-#	my $req_json = '{' . 
-#				   '"app":' . $app_id . ',' . 
-#				   '"query":"' . $query_param . '",' . 
-#				   '"fields":[' . $fields . '],' . 
-#				   '}'
-#
 	my $req_json = '{' . 
-				   '"app":' . "170" . ',' . 
-				   '"query":"' . '状況 in (\"ウォッチ\") and お客様企業名 like \"トーエル\"' . '",' . 
-				   '"fields":[' . '"お客様企業名","案件名","受注年月","状況","活動履歴"' . '],' . 
+				   '"app":' . $self->application_id . ',' . 
+				   '"query":"' . $self->query . '",' . 
+				   '"fields":[' . $self->fields . '],' . 
 				   '}';
+
+#	my $req_json = '{' . 
+#				   '"app":' . "170" . ',' . 
+#				   '"query":"' . '状況 in (\"ウォッチ\") and お客様企業名 like \"トーエル\"' . '",' . 
+#				   '"fields":[' . '"お客様企業名","案件名","受注年月","状況","活動履歴"' . '],' . 
+#				   '}';
 
 #	$client->request(
 #		 	'GET',

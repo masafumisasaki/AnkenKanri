@@ -72,10 +72,9 @@
 				</div>
 				<div class="col-lg-1"> </div>
 			</div>
+	<input class="form-control" type='text' id='membe_name' placeholder="担当者"><br>
 <div style='clear:both;border: 2px dotted #080; padding:10px;'>
 	<p>
-	担当者: <input type='text' id='text1' value='Hello'><br>
-	Param2: <input type='text' id='text2' value='World'><br>
 	<div id='div3' style='border:1px solid #00f;padding:10px;'></div>
 	<script type="text/javascript">
 $('#id1').click(function(){
@@ -85,18 +84,28 @@ type: "POST",
 cache: false,
 dataType: "json",
 data: {
-param1: $('#text1').val(),
-param2: $('#text2').val()
+member_name: $('#member_name').val(),
 },
 success: function(o){
+
+	document.body.style.cursor = "wait";
+
 	var cnt = Object.keys(o.records[0].活動履歴.value).length;
-	$('#div3').html( o.records[0].お客様企業名.value + " - " + 
-		o.records[0].活動履歴.value[cnt-1].value.活動日.value + "-" + 
-		o.records[0].活動履歴.value[cnt-1].value.文字列__複数行__4.value 
-		);
+
+	$('#div3').html("");
+
+	for(var i in o.records){
+		var cnt = Object.keys(o.records[i].活動履歴.value).length;
+		$('#div3').append("<pre>" + o.records[i].お客様企業名.value + ":" + o.records[i].案件名.value + "<br>" );
+		$('#div3').append( o.records[i].活動履歴.value[cnt-1].value.活動日.value + "<br>" 
+				         + o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value  + "<br><br>");
+		$('#div3').append("</pre>");
+	}
+
+	document.body.style.cursor = "";
 },
 error: function(xhr, textStatus, errorThrown){
-	alert('エラーが起きてるよ。管理者に連絡してね!!');
+	alert('エラーが起きてるけど、管理者に連絡しても無駄だよ。。。');
 }
 });
 });
