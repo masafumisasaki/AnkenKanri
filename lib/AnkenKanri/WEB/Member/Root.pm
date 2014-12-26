@@ -8,7 +8,7 @@ sub index {
 	my $kintone = Kintone->new(
 		kintone_url => 'https://mkt.cybozu.com',
 		proxy_server => $self->app->config->{kintone}->{proxy_server},
-		application_id => '170',
+		application_id => $self->app->config->{kintone}->{application_id},
 	);	
 
 	$self->render(content => 'Welcome to the Mojolicious real-time web framework!',

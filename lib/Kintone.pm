@@ -28,7 +28,7 @@ has fields => (
 	is	    => 'rw',
 );
 
-sub get_json {
+sub find {
 
 	my $self = shift;
 

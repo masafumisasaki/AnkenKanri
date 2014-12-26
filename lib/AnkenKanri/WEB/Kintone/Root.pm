@@ -8,16 +8,15 @@ sub search {
 	my $kintone = Kintone->new(
 		kintone_url => 'https://mkt.cybozu.com',
 		proxy_server => $self->app->config->{kintone}->{proxy_server},
-		application_id => '170',
+		application_id => $self->app->config->{kintone}->{application_id},
 	);
 
 	#$kintone->query('状況 in (\"ウォッチ\") and お客様企業名 like \"トーエル\"' );
-	$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\")');
-	$kintone->fields('"お客様企業名","案件名","受注年月","状況","活動履歴"' );
+	$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\") order by 更新日時 desc');
+	$kintone->fields('"お客様企業名","案件名","受注年月","状況","活動履歴","更新日時"' );
 
-	my $result_json = $kintone->get_json();	
+	my $result_json = $kintone->find();	
 
-	#$self->render(json => {data1=>$self->param("param1"),data2=>$self->param("param2")});
 	$self->render(json => $result_json);
 }
 
