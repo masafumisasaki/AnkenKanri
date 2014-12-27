@@ -59,55 +59,59 @@
 			</div>
 		</div>
 	</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<p>
-					<a id="id1" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-hand-right"></span>　週報の表示 </a>
-					</p>
-				</div>
-				<div class="col-lg-4">
-					<p>
-					<a class="btn btn-danger btn-large btn-block" href="//github.com/twbs/bootstrap/archive/v3.3.1.zip"><span class="glyphicon glyphicon-download-alt"></span>　週報のダウンロード</a>
-					</p>
-				</div>
-				<div class="col-lg-1"> </div>
-			</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<p>
+			<a id="id1" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-hand-right"></span>　週報の表示 </a>
+			</p>
+		</div>
+		<div class="col-lg-4">
+			<p>
+			<a class="btn btn-danger btn-large btn-block" href="//github.com/twbs/bootstrap/archive/v3.3.1.zip"><span class="glyphicon glyphicon-download-alt"></span>　週報のダウンロード</a>
+			</p>
+		</div>
+		<div class="col-lg-1"> </div>
+	</div>
 	<input class="form-control" type='text' id='member_name' placeholder="担当者"><br>
-<div style='clear:both;border: 2px dotted #080; padding:10px;'>
-	<p>
-	<div id='div3' style='border:1px solid #00f;padding:10px;'></div>
-	<script type="text/javascript">
-$('#id1').click(function(){
-$.ajax({
-url: "http://localhost:3000/kintone",
-type: "POST",
-cache: false,
-dataType: "json",
-data: {
-member_name: $('#member_name').val(),
-},
-success: function(o){
+	<div style='clear:both;border: 2px dotted #080; padding:10px;'>
+		<div id='div3'></div>
+		<script type="text/javascript">
+				$('#id1').click(function(){
+						$.ajax({
+					url: "http://localhost:3000/kintone",
+					type: "POST",
+					cache: false,
+					dataType: "json",
+					data: {
+					member_name: $('#member_name').val(),
+					},
+					success: function(o){
 
-	document.body.style.cursor = "wait";
+						document.body.style.cursor = "wait";
 
-	$('#div3').html("");
+						$('#div3').html("");
 
-	for(var i in o.records){
-		var cnt = Object.keys(o.records[i].活動履歴.value).length;
-		$('#div3').append("<pre>" + o.records[i].お客様企業名.value + ":" + o.records[i].案件名.value + "<br>" );
-		$('#div3').append( o.records[i].活動履歴.value[cnt-1].value.活動日.value + "<br>" 
-				         + o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value  + "<br><br>");
-		$('#div3').append("</pre>");
-	}
+						for(var i in o.records){
+							var cnt = Object.keys(o.records[i].活動履歴.value).length;
+							$('#div3').append('<h4><span class="label label-success">' + 
+									o.records[i].お客様企業名.value + ':' + o.records[i].案件名.value + 
+									'</span>' + 
+							'<span class="label label-info">' + 
+									o.records[i].活動履歴.value[cnt-1].value.活動日.value +	
+									'</span></h4><br>' );
+							$('#div3').append('<div class="well">' + 
+									o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value  + "<br><br>");
+							$('#div3').append("</div>");
+						}
 
-	document.body.style.cursor = "";
-},
-error: function(xhr, textStatus, errorThrown){
-	alert('エラーが起きてるけど、管理者に連絡しても無駄だよ。。。');
-}
-});
-});
-	</script>
+						document.body.style.cursor = "";
+					},
+						error: function(xhr, textStatus, errorThrown){
+								   alert('エラーが起きてるけど、管理者に連絡しても無駄だよ。。。');
+							   }
+					});
+				});
+		</script>
 </div>
 </div>
 </body>
