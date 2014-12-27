@@ -7,3 +7,4 @@ MYMETA.*
 /local
 nohup.out
 *.swp
+*log
