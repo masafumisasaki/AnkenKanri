@@ -3,7 +3,7 @@ package Kintone;
 use strict;
 use warnings;
 use utf8;
-use Rest::Client;
+use REST::Client;
 use URI::Escape;
 use JSON;
 use Encode;
