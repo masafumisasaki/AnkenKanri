@@ -11,54 +11,6 @@ DISTRIBUTIONS
       Test::More 0
       parent 0
       perl 5.008001
-  CPAN-Meta-2.143240
-    pathname: D/DA/DAGOLDEN/CPAN-Meta-2.143240.tar.gz
-    provides:
-      CPAN::Meta 2.143240
-      CPAN::Meta::Converter 2.143240
-      CPAN::Meta::Feature 2.143240
-      CPAN::Meta::History 2.143240
-      CPAN::Meta::Merge 2.143240
-      CPAN::Meta::Prereqs 2.143240
-      CPAN::Meta::Spec 2.143240
-      CPAN::Meta::Validator 2.143240
-    requirements:
-      CPAN::Meta::Requirements 2.121
-      CPAN::Meta::YAML 0.008
-      Carp 0
-      ExtUtils::MakeMaker 6.17
-      JSON::PP 2.27200
-      Parse::CPAN::Meta 1.4414
-      Scalar::Util 0
-      perl 5.008
-      strict 0
-      version 0.88
-      warnings 0
-  CPAN-Meta-Requirements-2.131
-    pathname: D/DA/DAGOLDEN/CPAN-Meta-Requirements-2.131.tar.gz
-    provides:
-      CPAN::Meta::Requirements 2.131
-    requirements:
-      B 0
-      Carp 0
-      ExtUtils::MakeMaker 6.17
-      perl 5.006
-      strict 0
-      version 0.88
-      warnings 0
-  CPAN-Meta-YAML-0.012
-    pathname: D/DA/DAGOLDEN/CPAN-Meta-YAML-0.012.tar.gz
-    provides:
-      CPAN::Meta::YAML 0.012
-    requirements:
-      B 0
-      Carp 0
-      Exporter 0
-      ExtUtils::MakeMaker 6.17
-      Fcntl 0
-      Scalar::Util 0
-      strict 0
-      warnings 0
   Class-Method-Modifiers-2.11
     pathname: E/ET/ETHER/Class-Method-Modifiers-2.11.tar.gz
     provides:
@@ -110,33 +62,6 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test 0
       perl 5.008
-  ExtUtils-CBuilder-0.280220
-    pathname: A/AM/AMBS/ExtUtils-CBuilder-0.280220.tar.gz
-    provides:
-      ExtUtils::CBuilder 0.280220
-      ExtUtils::CBuilder::Base 0.280220
-      ExtUtils::CBuilder::Platform::Unix 0.280220
-      ExtUtils::CBuilder::Platform::VMS 0.280220
-      ExtUtils::CBuilder::Platform::Windows 0.280220
-      ExtUtils::CBuilder::Platform::Windows::BCC 0.280220
-      ExtUtils::CBuilder::Platform::Windows::GCC 0.280220
-      ExtUtils::CBuilder::Platform::Windows::MSVC 0.280220
-      ExtUtils::CBuilder::Platform::aix 0.280220
-      ExtUtils::CBuilder::Platform::android 0.280220
-      ExtUtils::CBuilder::Platform::cygwin 0.280220
-      ExtUtils::CBuilder::Platform::darwin 0.280220
-      ExtUtils::CBuilder::Platform::dec_osf 0.280220
-      ExtUtils::CBuilder::Platform::os2 0.280220
-    requirements:
-      Cwd 0
-      ExtUtils::MakeMaker 6.30
-      File::Basename 0
-      File::Spec 3.13
-      File::Temp 0
-      IO::File 0
-      IPC::Cmd 0
-      Perl::OSType 1
-      Text::ParseWords 0
   ExtUtils-Depends-0.402
     pathname: X/XA/XAOC/ExtUtils-Depends-0.402.tar.gz
     provides:
@@ -287,6 +212,7 @@ DISTRIBUTIONS
       IO::Socket::SSL::Utils 0.03
     requirements:
       ExtUtils::MakeMaker 0
+      Mozilla::CA 0
       Net::SSLeay 1.46
       Scalar::Util 0
   Import-Into-1.002004
@@ -305,15 +231,6 @@ DISTRIBUTIONS
       JSON 2.90
       JSON::Backend::PP 2.90
       JSON::Boolean 2.90
-    requirements:
-      ExtUtils::MakeMaker 0
-      Test::More 0
-  JSON-PP-2.27300
-    pathname: M/MA/MAKAMAKA/JSON-PP-2.27300.tar.gz
-    provides:
-      JSON::PP 2.27300
-      JSON::PP::Boolean 2.27300
-      JSON::PP::IncrParser 2.27300
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
@@ -430,7 +347,7 @@ DISTRIBUTIONS
       Mojolicious::Command::generate::app undef
       Mojolicious::Command::generate::lite_app undef
       Mojolicious::Command::generate::makefile undef
-      Mojolicious::Command::generate::plugin 0.01
+      Mojolicious::Command::generate::plugin undef
       Mojolicious::Command::get undef
       Mojolicious::Command::inflate undef
       Mojolicious::Command::prefork undef
@@ -471,6 +388,7 @@ DISTRIBUTIONS
       IO::Socket::IP 0.26
       Pod::Simple 3.09
       Time::Local 1.2
+      perl 5.010001
   Moo-1.006001
     pathname: H/HA/HAARG/Moo-1.006001.tar.gz
     provides:
@@ -536,19 +454,6 @@ DISTRIBUTIONS
       MIME::Base64 0
       Test::More 0.60_01
       perl 5.005
-  Parse-CPAN-Meta-1.4414
-    pathname: D/DA/DAGOLDEN/Parse-CPAN-Meta-1.4414.tar.gz
-    provides:
-      Parse::CPAN::Meta 1.4414
-    requirements:
-      CPAN::Meta::YAML 0.011
-      Carp 0
-      Encode 0
-      Exporter 0
-      ExtUtils::MakeMaker 6.30
-      File::Spec 0.80
-      JSON::PP 2.27200
-      strict 0
   Path-Class-0.35
     pathname: K/KW/KWILLIAMS/Path-Class-0.35.tar.gz
     provides:
@@ -593,15 +498,6 @@ DISTRIBUTIONS
     requirements:
       Exporter 5.57
       perl 5.006
-  Socket-2.016
-    pathname: P/PE/PEVANS/Socket-2.016.tar.gz
-    provides:
-      Socket 2.016
-    requirements:
-      ExtUtils::CBuilder 0
-      ExtUtils::Constant 0.23
-      ExtUtils::MakeMaker 0
-      perl 5.006001
   Sub-Exporter-Progressive-0.001011
     pathname: F/FR/FREW/Sub-Exporter-Progressive-0.001011.tar.gz
     provides:
@@ -699,7 +595,6 @@ DISTRIBUTIONS
     pathname: I/IL/ILMARI/bareword-filehandles-0.003.tar.gz
     provides:
       bareword::filehandles 0.003
-      inc::BarewordFilehandlesMakeMaker undef
     requirements:
       B::Hooks::OP::Check 0
       ExtUtils::Depends 0
@@ -776,8 +671,6 @@ DISTRIBUTIONS
   multidimensional-0.011
     pathname: I/IL/ILMARI/multidimensional-0.011.tar.gz
     provides:
-      MyTest undef
-      inc::MultidimensionalMakeMaker undef
       multidimensional 0.011
     requirements:
       B::Hooks::OP::Check 0.19
