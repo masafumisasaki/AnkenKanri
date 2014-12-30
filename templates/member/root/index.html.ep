@@ -78,7 +78,7 @@
 		<script type="text/javascript">
 				$('#id1').click(function(){
 						$.ajax({
-					url: "http://localhost:3000/kintone",
+					url: "/kintone",
 					type: "POST",
 					cache: false,
 					dataType: "json",
