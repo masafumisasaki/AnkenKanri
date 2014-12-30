@@ -74,7 +74,7 @@
 	</div>
 	<input class="form-control" type='text' id='member_name' placeholder="担当者"><br>
 	<div style='clear:both;border: 2px dotted #080; padding:10px;'>
-		<div id='div3'></div>
+		<div id='search_result_area'></div>
 		<script type="text/javascript">
 				$('#id1').click(function(){
 						$.ajax({
@@ -89,19 +89,19 @@
 
 						document.body.style.cursor = "wait";
 
-						$('#div3').html("");
+						$('#search_result_area').html("");
 
 						for(var i in o.records){
 							var cnt = Object.keys(o.records[i].活動履歴.value).length;
-							$('#div3').append('<h4><span class="label label-success">' + 
+							$('#search_result_area').append('<h4><span class="label label-success">' + 
 									o.records[i].お客様企業名.value + ':' + o.records[i].案件名.value + 
 									'</span>' + 
 							'<span class="label label-info">' + 
 									o.records[i].活動履歴.value[cnt-1].value.活動日.value +	
 									'</span></h4><br>' );
-							$('#div3').append('<div class="well">' + 
+							$('#search_result_area').append('<div class="well">' + 
 									o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value  + "<br><br>");
-							$('#div3').append("</div>");
+							$('#search_result_area').append("</div>");
 						}
 
 						document.body.style.cursor = "";
