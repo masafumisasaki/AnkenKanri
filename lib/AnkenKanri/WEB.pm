@@ -30,6 +30,7 @@ sub startup {
 	
   	$loged_in->route('/')->to('member-root#index');
   	$loged_in->route('/kintone')->to('kintone-root#search');
+  	$loged_in->route('/logout')->to('member-root#logout');
 	
 }
 

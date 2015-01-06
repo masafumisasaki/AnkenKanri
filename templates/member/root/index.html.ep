@@ -21,9 +21,7 @@
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/conc/">Home</a></li>
-				<li><a href="../WebLabo/menu.html">ログイン</a></li>
-				<li><a href="../GameLabo/menu.html">ログオフ</a></li>
+				<li><a href="/logout">logoff</a></li>
 			</ul>
 		</div>
 	</div>
@@ -74,7 +72,7 @@
 	</div>
 	<input class="form-control" type='text' id='member_name' placeholder="担当者"><br>
 	<div style='clear:both;border: 2px dotted #080; padding:10px;'>
-		<div id='search_result_area'></div>
+	<div id='search_result_area'></div>
 		<script type="text/javascript">
 				$('#id1').click(function(){
 						$.ajax({
@@ -112,7 +110,7 @@
 					});
 				});
 		</script>
-</div>
+	</div>
 </div>
 </body>
 </html>

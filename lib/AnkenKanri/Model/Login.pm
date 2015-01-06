@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Moo;
 
-has user_name => (
+has login_id => (
 	is	    => 'ro',
 	required => 1,
 );
@@ -13,10 +13,18 @@ has password => (
 	required => 1,
 );
 
-
 sub authenticate {
 
-	return 1;
+	my $self = shift;
+
+	my $login_id  = $self->login_id || '';
+   	my $password = $self->password || '';
+	
+	if ( $login_id eq "sol-member" and $password eq "soei3" ) {
+        return 1;
+    }else{
+        return 0;
+	}
 
 }
 

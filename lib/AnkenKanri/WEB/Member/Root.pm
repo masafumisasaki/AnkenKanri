@@ -1,6 +1,7 @@
 package AnkenKanri::WEB::Member::Root;
 use Mojo::Base 'Mojolicious::Controller';
 use Kintone;
+use AnkenKanri::Model::Login;
 
 sub index {
 	my $self = shift;
@@ -22,13 +23,12 @@ sub login {
 
 		return 1 if ( $loggedin == 1 );
 
-        my $loginid  = $self->param('login_id') || '';
-        my $password = $self->param('password') || '';
-		$self->app->log->debug("loginid=". $loginid); 
-		$self->app->log->debug("password=". $password); 
+		my $login = AnkenKanri::Model::Login->new(
+			login_id => $self->param('login_id') 	,
+			password => $self->param('password') 	,
+		);
 
-        if ( $loginid eq "sol-member" and $password eq "soei3" ) {
-			$self->app->log->debug("success!!"); 
+        if ( $login->authenticate ) {
 			$self->session(loggedin => 1);
             return 1;
         }
@@ -37,6 +37,15 @@ sub login {
 	$self->render();
     return undef;
 	
+}
+
+sub logout {
+
+	my $self = shift;
+
+	$self->session(expires => 1);
+
+	$self->redirect_to('/');
 }
 
 1;
