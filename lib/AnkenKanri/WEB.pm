@@ -4,6 +4,7 @@ use Path::Class;
 
 # This method will run once at server start
 sub startup {
+
 	my $self = shift;
 
 	my $home = new Path::Class::File(__FILE__);
@@ -15,11 +16,20 @@ sub startup {
 		#$conf = $self->plugin( 'Config', { 'file' => $f } );
 	}
 
+	# Secret
+	$self->secrets(['secret']);
+
+	# Session
+	$self->session(expiration => 3600);
+
     # Router
   	my $r = $self->routes;
 
-  	$r->route('/')->to('member-root#index');
-  	$r->route('/kintone')->to('kintone-root#search');
+	#
+	my $loged_in = $r->bridge->to('member-root#login');
+	
+  	$loged_in->route('/')->to('member-root#index');
+  	$loged_in->route('/kintone')->to('kintone-root#search');
 	
 }
 
