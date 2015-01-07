@@ -23,14 +23,41 @@ sub startup {
 	$self->session(expiration => 3600);
 
     # Router
-  	my $r = $self->routes;
+  	my $routes = $self->routes;
+	my $loged_in = $routes->bridge->to('member-root#login');
 
-	#
-	my $loged_in = $r->bridge->to('member-root#login');
+	# SSL routes
+	my $ssl_routes = $loged_in->bridge->to(
+		cb => sub{
+			my $self = shift;
+
+			my $req = $self->req;
+			return 1 if $req->is_secure;
+
+			$self->redirect_to($req->url->to_abs->scheme('https')->port(3001));
+			return;
+		}
+	);
+
+	# Not SSL routes
+	my $not_ssl_routes = $loged_in->bridge->to(
+		cb => sub{
+			my $self = shift;
+
+			my $url = $self->req->url;
+			return 1 if $url->base->scheme eq 'http';
+
+			$self->redirect_to($url->to_abs->scheme('http')->port(3000));
+			return;
+		}
+	);
+
+	$ssl_routes->route('/login')->to('member-root#login');
 	
-  	$loged_in->route('/')->to('member-root#index');
-  	$loged_in->route('/kintone')->to('kintone-root#search');
-  	$loged_in->route('/logout')->to('member-root#logout');
+	$not_ssl_routes->route('/')->to('member-root#index');
+	$not_ssl_routes->route('/app')->to('member-root#index');
+  	$not_ssl_routes->route('/kintone')->to('kintone-root#search');
+	$not_ssl_routes->route('/logout')->to('member-root#logout');
 	
 }
 

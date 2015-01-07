@@ -2,6 +2,7 @@ package AnkenKanri::WEB::Member::Root;
 use Mojo::Base 'Mojolicious::Controller';
 use Kintone;
 use AnkenKanri::Model::Login;
+use Mojo::URL;
 
 sub index {
 	my $self = shift;
@@ -45,7 +46,7 @@ sub logout {
 
 	$self->session(expires => 1);
 
-	$self->redirect_to('/');
+	$self->redirect_to(Mojo::URL->new("https://localhost:3001/login"));
 }
 
 1;
