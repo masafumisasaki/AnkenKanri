@@ -16,10 +16,10 @@
 		<form id="login_form" role="form" method="post" action="/app">
 			<fieldset>
 				<div class="form-group">
-					<input type="text" autofocus="" name="login_id" placeholder="LoginID" class="form-control">
+					<input id="login_id" type="text" autofocus="" name="login_id" placeholder="LoginID" class="form-control">
 				</div>
 				<div class="form-group">
-					<input type="password" value="" name="password" placeholder="Password" class="form-control">
+					<input id="password" type="password" value="" name="password" placeholder="Password" class="form-control">
 				</div>
 				<div class="checkbox">
 					<label>
@@ -31,13 +31,51 @@
 			</fieldset>
 		</form>
 	</div>
+	<div id='auth_message'></div>
 </div>
 		<script type="text/javascript">
+			/*
 			$(document).ready(function() {
 				$('#login_button').click(function() {
 					$('#login_form').submit();
 				});
 		});
+			*/
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#login_button').click(function(){
+						$.ajax({
+					url: "/api/auth",
+					type: "POST",
+					cache: false,
+					dataType: "json",
+					data: {
+					login_id: $('#login_id').val(),
+					password: $('#password').val()
+					},
+					success: function(o){
+
+						document.body.style.cursor = "wait";
+
+						$('#auth_message').html("");
+						
+						var is_auth = o.result;
+						if (is_auth == false) {
+							$('#auth_message').append('<div class="alert alert-danger" role="alert">' + 'ログインＩＤかパスワードが不正です。' + '</div>');
+						}else{
+							$('#login_form').submit();
+						}
+
+						$('#password').val(""),
+						document.body.style.cursor = "";
+					},
+						error: function(xhr, textStatus, errorThrown){
+								   alert('エラーが起きてるけど、管理者に連絡しても無駄だよ。。。' + textStatus);
+							   }
+					});
+				});
+			});
 		</script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package AnkenKanri::WEB;
 use Mojo::Base 'Mojolicious';
-use Path::Class;
-
+use Path::Class; 
 # This method will run once at server start
 sub startup {
 
@@ -24,6 +23,7 @@ sub startup {
 
     # Router
   	my $routes = $self->routes;
+	$routes->route('/api/auth')->to('api-root#certify');
 	my $loged_in = $routes->bridge->to('member-root#login');
 
 	# SSL routes
