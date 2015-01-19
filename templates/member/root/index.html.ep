@@ -90,15 +90,22 @@
 						$('#search_result_area').html("");
 
 						for(var i in o.records){
+
 							var cnt = Object.keys(o.records[i].活動履歴.value).length;
-							$('#search_result_area').append('<h4><span class="label label-success">' + 
+
+							$('#search_result_area').append('<h4><span class="label label-warning">' + 
+								o.records[i].状況.value + "</span>" + 
+
+							'<span class="label label-success">' + 
 									o.records[i].お客様企業名.value + ':' + o.records[i].案件名.value + 
 									'</span>' + 
 							'<span class="label label-info">' + 
 									o.records[i].活動履歴.value[cnt-1].value.活動日.value +	
-									'</span></h4><br>' );
+									'</span></h4>' );
+
 							$('#search_result_area').append('<div class="well">' + 
-									o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value  + "<br><br>");
+									o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value.replace(/\r?\n/g, '<br>') + "<br>");
+
 							$('#search_result_area').append("</div>");
 						}
 
