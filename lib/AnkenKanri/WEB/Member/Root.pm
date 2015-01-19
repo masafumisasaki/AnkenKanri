@@ -3,6 +3,7 @@ use Mojo::Base 'Mojolicious::Controller';
 use Kintone;
 use AnkenKanri::Model::Login;
 use Mojo::URL;
+use Data::Dumper;
 
 sub index {
 	my $self = shift;
@@ -46,7 +47,11 @@ sub logout {
 
 	$self->session(expires => 1);
 
-	$self->redirect_to(Mojo::URL->new("https://localhost:3001/login"));
+	#$self->app->log->debug($self->tx->req->url->base->host);
+	#my $host = $self->tx->req->url->base->host;
+	#$self->redirect_to(Mojo::URL->new("https://$host:3001/login"));
+	
+	$self->redirect_to("/login");
 }
 
 1;
