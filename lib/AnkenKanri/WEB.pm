@@ -81,12 +81,13 @@ sub startup {
 		}
 	);
 	$ssl_routes->route('/login')->to('member-root#login');
-	$ssl_routes->route('/api/auth')->to('api-root#certify');
+#	$ssl_routes->route('/api/auth')->to('api-root#certify');
 	
 	$not_ssl_routes->route('/app')->to('member-root#index');
   	$not_ssl_routes->route('/kintone')->to('kintone-root#search');
 	$not_ssl_routes->route('/logout')->to('member-root#logout');
 	
+	$routes->route('/api/auth')->to('api-root#certify');
 }
 
 1;

@@ -13,9 +13,9 @@ sub search {
 	#$kintone->query('状況 in (\"ウォッチ\") and お客様企業名 like \"トーエル\"' );
 	$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\") 
 					and 状況 not in (\"クローズ(Win)\",\"クローズ(Loss)\",\"クローズ(辞退)\") 
-					order by 更新日時 desc');
+					order by 受注年月,受注年月,更新日時 desc');
 	#$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\") order by 更新日時 desc');
-	$kintone->fields('"お客様企業名","案件名","受注年月","状況","活動履歴","更新日時"' );
+	$kintone->fields('"お客様企業名","案件名","受注年月","確度","状況","活動履歴","更新日時"' );
 
 	my $result_json = $kintone->find();	
 

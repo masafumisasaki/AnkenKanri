@@ -48,10 +48,10 @@ sub logout {
 	$self->session(expires => 1);
 
 	#$self->app->log->debug($self->tx->req->url->base->host);
-	#my $host = $self->tx->req->url->base->host;
-	#$self->redirect_to(Mojo::URL->new("https://$host:3001/login"));
+	my $host = $self->tx->req->url->base->host;
+	$self->redirect_to(Mojo::URL->new("https://$host:3001/login"));
 	
-	$self->redirect_to("/login");
+	#$self->redirect_to("/login");
 }
 
 1;

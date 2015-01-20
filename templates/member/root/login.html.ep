@@ -46,7 +46,7 @@
 			$(document).ready(function() {
 				$('#login_button').click(function(){
 						$.ajax({
-					url: "/api/auth",
+					url: "https://localhost:3001/api/auth",
 					type: "POST",
 					cache: false,
 					dataType: "json",
