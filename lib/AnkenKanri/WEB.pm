@@ -85,6 +85,7 @@ sub startup {
 	
 	$not_ssl_routes->route('/app')->to('member-root#index');
   	$not_ssl_routes->route('/kintone')->to('kintone-root#search');
+  	$not_ssl_routes->route('/weeklyreport')->to('kintone-root#weeklyreport');
 	$not_ssl_routes->route('/logout')->to('member-root#logout');
 	
 	$routes->route('/api/auth')->to('api-root#certify');

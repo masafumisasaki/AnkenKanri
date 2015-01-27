@@ -6,6 +6,7 @@ requires 'JSON';
 requires 'Encode';
 requires 'Moo';
 requires 'Path::Class';
+requires 'Template';
 
 # requires 'Some::Module', 'VERSION';
 
