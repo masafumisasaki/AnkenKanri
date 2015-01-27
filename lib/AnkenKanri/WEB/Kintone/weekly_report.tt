@@ -1,0 +1,50 @@
+水島さん
+
+お疲れ様です。佐々木です。
+週報をお送りします。
+
+[実績］
+
+  [% activity_of_the_week.current.monday.date    %](月) [% activity_of_the_week.current.monday.activity    %]
+  [% activity_of_the_week.current.tuesday.date   %](火) [% activity_of_the_week.current.tuesday.activity   %]
+  [% activity_of_the_week.current.wednesday.date %](水) [% activity_of_the_week.current.wednesday.activity %]
+  [% activity_of_the_week.current.thursday.date  %](木) [% activity_of_the_week.current.thursday.activity  %]
+  [% activity_of_the_week.current.friday.date    %](金) [% activity_of_the_week.current.friday.activity    %]
+
+[トピック]
+
+  ◆セールス
+   [% FOREACH sales IN topic_of_the_week.sales %] [% FOREACH pair IN sales.pairs %]
+      ◆[% pair.key %]
+        - [% pair.value %]
+    [% END - %] [% END - %]
+
+  ◆その他
+   [% FOREACH o IN topic_of_the_week.other %] [% FOREACH pair IN o.pairs %]
+      ◆[% pair.key %]
+        - [% pair.value %]
+    [% END - %] [% END - %]
+
+[予定]
+
+  [% activity_of_the_week.next.monday.date    %](月) [% activity_of_the_week.next.monday.activity    %]
+  [% activity_of_the_week.next.tuesday.date   %](火) [% activity_of_the_week.next.tuesday.activity   %]
+  [% activity_of_the_week.next.wednesday.date %](水) [% activity_of_the_week.next.wednesday.activity %]
+  [% activity_of_the_week.next.thursday.date  %](木) [% activity_of_the_week.next.thursday.activity  %]
+  [% activity_of_the_week.next.friday.date    %](金) [% activity_of_the_week.next.friday.activity    %]
+
+以上です。
+
+**********************************************
+JBCC株式会社
+  ソリューションマーケティング事業部 
+  クラウドソリューション営業本部
+  コマース営業部
+
+  佐々木 雅文
+
+  TEL   080-9558-8428 (内線 934437)
+  MAIL  m_sasaki@jbcc.co.jp
+**********************************************
+
+
