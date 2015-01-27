@@ -85,14 +85,13 @@
 					},
 					success: function(o){
 
-						document.body.style.cursor = "wait";
-
 						$('#search_result_area').html("");
 
 						for(var i in o.records){
 
 							var cnt = Object.keys(o.records[i].活動履歴.value).length;
 
+							// header
 							$('#search_result_area').append('<h4><span class="label label-danger">' + 
 								o.records[i].状況.value + "</span>" + 
 
@@ -107,23 +106,32 @@
 							'<span class="label label-success">' + 
 									o.records[i].お客様企業名.value + ':' + o.records[i].案件名.value + 
 									'</span>' + 
-							'<span class="label label-info">' + 
-									o.records[i].活動履歴.value[cnt-1].value.活動日.value +	
-									'</span></h4>' );
 
-							$('#search_result_area').append('<div class="well">' + 
-									o.records[i].活動履歴.value[cnt-1].value.文字列__複数行__4.value.replace(/\r?\n/g, '<br>') + "<br>");
 
-							$('#search_result_area').append("</div>");
+									'</h4>' );
+
+							// detail
+							const DISPLAY_REDCORD = 2;
+
+							for (var j = DISPLAY_REDCORD ; j > 0 ; j--) {
+
+								$('#search_result_area').append('<span class="label label-info">' + o.records[i].活動履歴.value[cnt-j].value.活動日.value +	'</span></h4>' );
+								$('#search_result_area').append('<div class="well">' + 
+										o.records[i].活動履歴.value[cnt-j].value.文字列__複数行__4.value.replace(/\r?\n/g, '<br>'));
+								$('#search_result_area').append("</div>");
+
+							} 
+
 						}
 
-						document.body.style.cursor = "";
 					},
 						error: function(xhr, textStatus, errorThrown){
 								   alert('エラーが起きてるけど、管理者に連絡しても無駄だよ。。。:' + xhr.statusText);
 							   }
 					});
+
 				});
+
 		</script>
 	</div>
 </div>
