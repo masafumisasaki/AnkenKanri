@@ -1,6 +1,6 @@
 水島さん
 
-お疲れ様です。佐々木です。
+お疲れ様です。[% name %]です。
 週報をお送りします。
 
 [実績］
@@ -13,17 +13,14 @@
 
 [トピック]
 
-  ◆セールス
-   [% FOREACH sales IN topic_of_the_week.sales %] [% FOREACH pair IN sales.pairs %]
-      ◆[% pair.key %]
-        - [% pair.value %]
-    [% END - %] [% END - %]
-
-  ◆その他
-   [% FOREACH o IN topic_of_the_week.other %] [% FOREACH pair IN o.pairs %]
-      ◆[% pair.key %]
-        - [% pair.value %]
-    [% END - %] [% END - %]
+  ■セールス [% FOREACH rec IN records %]
+      ◆[% rec.受注年月.value %]:[% rec.お客様企業名.value %]:[% rec.案件名.value %]([% rec.案件種別.value %])
+            担当営業:[% rec.JBCC営業.value %] 確度:[[% rec.確度.value %]] 初期(M):[% rec.shokihi.value %] 月額(M):[% rec.getsugaku.value %]
+            [% SET idx = rec.活動履歴.value.max() - %]
+[% FILTER indent('            ') %]
+[% rec.活動履歴.value.${idx}.value.文字列__複数行__4.value %]
+[% END - %]
+   [% END - %]
 
 [予定]
 
@@ -34,17 +31,3 @@
   [% activity_of_the_week.next.friday.date    %](金) [% activity_of_the_week.next.friday.activity    %]
 
 以上です。
-
-**********************************************
-JBCC株式会社
-  ソリューションマーケティング事業部 
-  クラウドソリューション営業本部
-  コマース営業部
-
-  佐々木 雅文
-
-  TEL   080-9558-8428 (内線 934437)
-  MAIL  m_sasaki@jbcc.co.jp
-**********************************************
-
-

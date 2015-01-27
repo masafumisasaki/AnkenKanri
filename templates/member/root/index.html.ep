@@ -60,12 +60,12 @@
 	<div class="row">
 		<div class="col-lg-4">
 			<p>
-			<a id="id1" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-hand-right"></span>　週報の表示 </a>
+			<a id="show_button" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-hand-right"></span>　週報の表示 </a>
 			</p>
 		</div>
 		<div class="col-lg-4">
 			<p>
-			<a class="btn btn-danger btn-large btn-block" href="//github.com/twbs/bootstrap/archive/v3.3.1.zip"><span class="glyphicon glyphicon-download-alt"></span>　週報のダウンロード</a>
+			<a id="show_text_button" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-download-alt"></span>　週報のダウンロード</a>
 			</p>
 		</div>
 		<div class="col-lg-1"> </div>
@@ -74,7 +74,7 @@
 	<div style='clear:both;border: 2px dotted #080; padding:10px;'>
 	<div id='search_result_area'></div>
 		<script type="text/javascript">
-				$('#id1').click(function(){
+				$('#show_button').click(function(){
 						$.ajax({
 					url: "/kintone",
 					type: "POST",
@@ -128,6 +128,30 @@
 							} 
 
 						}
+
+					},
+						error: function(xhr, textStatus, errorThrown){
+								   alert('エラーが起きてるけど、管理者に連絡しても無駄だよ。。。:' + xhr.statusText);
+							   }
+					});
+
+				});
+
+		</script>
+		<script type="text/javascript">
+				$('#show_text_button').click(function(){
+						$.ajax({
+					url: "/weeklyreport",
+					type: "POST",
+					cache: false,
+					dataType: "text",
+					data: {
+					member_name: $('#member_name').val(),
+					},
+					success: function(o){
+
+						$('#search_result_area').html("");
+						$('#search_result_area').html(o);
 
 					},
 						error: function(xhr, textStatus, errorThrown){

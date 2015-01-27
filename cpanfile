@@ -7,6 +7,7 @@ requires 'Encode';
 requires 'Moo';
 requires 'Path::Class';
 requires 'Template';
+requires 'Template::Provider::Encoding';
 requires 'Time::Piece';
 requires 'Time::Seconds';
 
