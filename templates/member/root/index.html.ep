@@ -111,9 +111,14 @@
 									'</h4>' );
 
 							// detail
-							const DISPLAY_REDCORD = 2;
+							const MAX_DISPLAY_REDCORD = 2;
+							var displayRecord = MAX_DISPLAY_REDCORD;
 
-							for (var j = DISPLAY_REDCORD ; j > 0 ; j--) {
+							if (MAX_DISPLAY_REDCORD >= cnt ){
+								var displayRecord = cnt; 
+							}
+
+							for (var j = displayRecord ; j > 0 ; j--) {
 
 								$('#search_result_area').append('<span class="label label-info">' + o.records[i].活動履歴.value[cnt-j].value.活動日.value +	'</span></h4>' );
 								$('#search_result_area').append('<div class="well">' + 
