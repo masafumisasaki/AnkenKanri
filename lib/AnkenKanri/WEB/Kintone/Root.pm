@@ -22,7 +22,6 @@ sub search {
 
 	$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\") 
 					and 状況 not in (\"クローズ(Win)\",\"クローズ(Loss)\",\"クローズ(辞退)\",\"HQハンドリング\") 
-					and 案件分類 not in (\"マーケティング\") 
 					order by 受注年月,受注年月,更新日時 desc');
 
 	$kintone->fields('"お客様企業名","案件名","受注年月","確度","状況","活動履歴","更新日時","案件分類"' );
@@ -43,7 +42,6 @@ sub weeklyreport {
 
 	$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\") 
 					and 状況 not in (\"クローズ(Win)\",\"クローズ(Loss)\",\"クローズ(辞退)\",\"HQハンドリング\",\"ウォッチ\") 
-					and 案件分類 not in (\"マーケティング\") 
 					order by 受注年月,受注年月,更新日時 desc');
 
 	$kintone->fields('"案件分類","お客様企業名","案件名","受注年月","確度","状況","活動履歴","更新日時","shokihi","getsugaku","案件種別","JBCC営業"' );
