@@ -1,7 +1,7 @@
 AnkenKanri
 ==========
 
-###インストール
+###Install
 
 1. $ git clone git://github.com/tokuhirom/plenv.git ~/.plenv
 1. $ echo 'export PATH=$HOME/.plenv/bin:$PATH' >> ~/.bash_profile
@@ -13,5 +13,6 @@ AnkenKanri
 1. $ plenv install-cpanm
 1. $ cpanm install Carton
 1. $ sudo yum install openssl-devel
+1. $ git clone https://github.com/masafumisasaki/AnkenKanri.git ~/ShuhouKun/
+1. $ cd ~/ShuhouKun
 1. $ carton install
-
