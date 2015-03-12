@@ -34,10 +34,15 @@ sub search {
 sub weeklyreport {
 
 	my $self = shift;
+
+	#
+	# 案件管理アプリ
+	#
 	my $kintone = Kintone->new(
 		kintone_url => 'https://mkt.cybozu.com',
 		proxy_server => $self->app->config->{kintone}->{proxy_server},
 		application_id => $self->app->config->{kintone}->{application_id},
+		token => "l4Fxfy8sFLa9Sd4eS7jSE86UJckRQN2B6TvL3b7L",
 	);
 
 	$kintone->query('コマース担当 in (\"' . $self->param("member_name") . '\") 
@@ -47,6 +52,28 @@ sub weeklyreport {
 	$kintone->fields('"案件分類","お客様企業名","案件名","受注年月","確度","状況","活動履歴","更新日時","shokihi","getsugaku","案件種別","JBCC営業"' );
 
 	my $result_json = $kintone->find();	
+
+	#
+	# リード管理アプリ
+	#
+	my $lead = Kintone->new(
+		kintone_url => 'https://mkt.cybozu.com',
+		proxy_server => $self->app->config->{kintone}->{proxy_server},
+		application_id => "342",
+		token => "s9a9JMxWc2Pau4GoAVC1RMW7iaHDU8lSclcHmuxE",
+	);
+
+	$lead->query('コマース担当 in (\"' . $self->param("member_name") . '\") 
+			        and リード状況 in (\"' . "確認中" . '\") 
+					order by リード発掘日');
+
+	$lead->fields('"案件種別","お客様企業名","ソース＿施策","次Action","活動履歴","リード状況","リード発掘日"' );
+
+	my $lead_result_json = $lead->find();
+
+	#
+	# テンプレート受け渡しデータ生成
+	#
 
 	my $t = get_report_day();
 
@@ -90,7 +117,12 @@ sub weeklyreport {
 				activity => '', },
 		},
 	};
+	$result_json->{lead} = $lead_result_json;
 
+	#my $json = JSON->new;
+	#$json = $json->pretty(1);
+	#$self->app->log->debug($json->pretty->encode($result_json));
+	
 	$tt->process("$root/weekly_report.tt", $result_json , \$result) || die $tt->error() ;
 
 	$result =~ s/\n/<br>/g;

@@ -13,6 +13,15 @@
 
 [トピック]
 
+  ■リード [% FOREACH rec IN lead.records %]
+      ○[% rec.お客様企業名.value %]([% rec.案件種別.value %])
+            リード発掘日:[% rec.リード発掘日.value %] 施策:[% rec.ソース＿施策.value %] 次アクション:[[% rec.次アクション.value %]]
+            [% SET idx = rec.活動履歴.value.max() - %]
+[% FILTER indent('            ') %]
+[% rec.活動履歴.value.${idx}.value.文字列__複数行__4.value %]
+[% END - %]
+   [% END - %]
+
   ■セールス [% FOREACH rec IN records %]
       ◆[% rec.受注年月.value %]:[% rec.お客様企業名.value %]:[% rec.案件名.value %]([% rec.案件種別.value %])
             担当営業:[% rec.JBCC営業.value %] 確度:[[% rec.確度.value %]] 初期(M):[% rec.shokihi.value %] 月額(M):[% rec.getsugaku.value %]

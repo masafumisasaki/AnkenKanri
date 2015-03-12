@@ -28,6 +28,10 @@ has fields => (
 	is	    => 'rw',
 );
 
+has token => (
+	is	    => 'rw',
+);
+
 sub find {
 
 	my $self = shift;
@@ -44,34 +48,13 @@ sub find {
 				   '"fields":[' . $self->fields . '],' . 
 				   '}';
 
-#	my $req_json = '{' . 
-#				   '"app":' . "170" . ',' . 
-#				   '"query":"' . '状況 in (\"ウォッチ\") and お客様企業名 like \"トーエル\"' . '",' . 
-#				   '"fields":[' . '"お客様企業名","案件名","受注年月","状況","活動履歴"' . '],' . 
-#				   '}';
-
-#	$client->request(
-#		 	'GET',
-#            '/k/v1/records.json',
-#			encode_utf8(q/{
-#			"app":170,
-#			"query":"状況 in (\"ウォッチ\") and お客様企業名 like \"トーエル\"",
-#	 	   	"fields":["お客様企業名","案件名","受注年月","状況","活動履歴"]
-#			}/),
-#            {
-#                'X-Cybozu-API-Token'     => "qYArQFYeMRUfLaBkmBx23jDJhIh5fDJo8tSRuZwW",
-#                'X-Cybozu-Authorization' => 'c29sLW1lbWJlcjpzb2Vp',
-#                'Accept-Language' => 'ja',
-#				'Content-Type' => 'application/json',
-#            }
-#        );
 	$client->request(
 		 	'GET',
             '/k/v1/records.json',
 			encode_utf8($req_json),
             {
-                'X-Cybozu-API-Token'     => "qYArQFYeMRUfLaBkmBx23jDJhIh5fDJo8tSRuZwW",
-                'X-Cybozu-Authorization' => 'c29sLW1lbWJlcjpzb2Vp',
+                'X-Cybozu-API-Token'     => $self->token,
+                'X-Cybozu-Authorization' => 'c29sLW1lbWJlcjpzb2VpMw==',
                 'Accept-Language' => 'ja',
 				'Content-Type' => 'application/json',
             }
@@ -80,6 +63,7 @@ sub find {
 	my $json = JSON->new;
 	$json = $json->pretty(1);
 	my $json_string = decode_utf8( $client->responseContent());
+
 	#return $json->pretty->encode($json->decode($json_string));
 	return $json->decode($json_string);
 	#return $json_string;
